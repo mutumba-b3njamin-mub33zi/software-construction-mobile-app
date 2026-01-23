@@ -47,6 +47,7 @@ Basically all of the Spotify features work offline unless one has paid for the p
 
 
 Part D: Software Construction Challenges
+
 Maintaining a global platform like Spotify involves juggling millions of concurrent users, massive data pipelines, and a highly complex microservices architecture. Here are five significant engineering challenges involved in maintaining and improving the app:
 
 1. Scalability and Low-Latency Streaming
