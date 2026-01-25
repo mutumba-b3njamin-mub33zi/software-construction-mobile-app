@@ -199,3 +199,15 @@ The Challenge: These features are often built as independent microservices. If t
 A significant portion of Spotify's user base listens while commuting, underground, or in areas with unstable 3G/4G connections.
 
 The Challenge: The app must be engineered for graceful degradation. This involves intelligent caching (pre-downloading the next song in the background) and adaptive bitrate streaming, which automatically lowers the audio quality to prevent buffering when the signal strength drops.
+
+Part E: Group Reflection 
+
+1) What surprised our group most about the complexity behind this app?
+We were surprised that Spotify isn’t “just playing music.” Behind one tap, it has to identify the user, check their subscription status, match the right audio file version, manage copyrights/region rules, pick a streaming quality based on network speed, and still keep the app smooth. Even features that look simple—like search, playlists, or “Liked Songs”—involve huge data handling, real-time syncing across devices, and recommendation systems that constantly learn from user behavior.
+
+2) Why is writing “working code” not enough for software systems at this scale?
+Because at Spotify’s scale, code must be maintainable, reliable, secure, and scalable over time. “Working code” might function today, but it can fail under heavy traffic, break on certain phones, drain battery, or become impossible to update safely. Spotify also needs strong testing, monitoring, and deployment practices so changes don’t crash millions of users at once. Plus, the system must handle messy real-world problems—slow internet, offline mode, different devices, payment issues, and continuous feature updates—without becoming unstable.
+
+3) What did we learn about teamwork from this exercise?
+We learned that teamwork is not optional in large software—it’s the only way it works. Different people naturally notice different things: one focuses on user experience, another on backend systems, another on risks and failures. To get a solid answer, we had to divide tasks, agree on assumptions, keep our explanations consistent, and combine everyone’s ideas into one clear document. We also realized that good collaboration means communicating early, keeping work organized in GitHub, and making sure everyone contributes meaningfully—not just one person doing everything.
+
