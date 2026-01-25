@@ -3,6 +3,14 @@ Spotify: Behind the App
 Course: Software Construction
 Assignment: Behind the App – Thinking Like Software Engineers
 
+Group members
+Kisuze GAreth Neville (S23B23/029)
+Nziriga Isaac Nickson (S23B23/046)
+Andrew Ogwang (S23B23/050)
+Katende Derrick (S23B23/024)
+Mutumba Benjamin Mubeezi (S23B23/010)
+
+
 PART A: UNDERSTANDING THE APP
 1. APP OVERVIEW
 What problem does spotify solve?
