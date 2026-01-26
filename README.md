@@ -51,14 +51,163 @@ This being a streaming application it means that it heavily relies on the availa
 For example for the premium version due to a download feature, one can search for a song as long as they downloaded the songs prior, so for that specific feature of searching for a song it works offline for premium users but doesn't for free users.
 Basically all of the Spotify features work offline unless one has paid for the premium version 
 
+**PART C**
+# **Change Scenario: Add Mobile Money Payments in Uganda**
+## 1. Which parts of the app would need changes?
+Adding mobile money is not just adding a new button. It affects multiple layers of the system.
+### a) User Interface (UI)
+Changes needed:  
+- New payment option screens: MTN MoMo, Airtel Money, etc.  
+- Phone number input instead of card details.  
+- Status screens for:
+  - Waiting for approval on your phone  
+  - Payment pending  
+  - Payment failed / reversed
+- Error messaging tailored to Mobile Money (timeouts, insufficient balance, user cancelled).
 
+Why:  
+Mobile Money flows are interactive and asynchronous, unlike instant card payments.  
 
+### b) Business Logic
+Major changes here include:  
+- Payment state management (pending → successful → failed).
+- Subscription activation logic must wait for confirmation from telecoms.
+- Retry & timeout handling (users may approve late or not at all).
+- Currency handling (UGX instead of USD/EUR).
+- Partial payments & reversals logic (common in MoMo systems).
 
+Why:  
+Unlike cards, mobile money does not confirm instantly.  
 
+### c) Backend / APIs
+Changes include:  
+- Integration with:
+  - MTN MoMo API
+  - Airtel Money API
+  - Possibly a payment aggregator (Flutterwave, Paystack, etc.)
+- Webhook listeners to receive payment confirmation asynchronously.
+- Fraud and duplicate transaction protection.
 
+Why:  
+Mobile Money payments don’t complete in a single request–response cycle.  
 
+### d) Data Storage
+New data must be stored:  
+- Mobile money transaction IDs
+- Payment status (pending, successful, failed)
+- Provider-specific references
+- Audit logs for disputes and refunds  
 
+This data must be consistent and reliable, especially for financial records.  
 
+## 2. What existing features could break?
+### a) Instant Premium Access
+Problem:  
+- Spotify grants Premium immediately after payment success.
+- Mobile Money payments can take minutes (or fail after initiation).
 
+Risk:
+- Users get Premium without paying.
+- Or users pay but don’t get Premium.
 
+### b) Subscription Renewal Logic  
+Mobile money recurring payments are unreliable:  
+-	Users change SIM cards
+-	Wallets run out of balance (Statistically, mobile money balances hit zero far more often than card-linked accounts.)
+-	Telecoms may require user approval every month.
+- Providers fail silently (The user must actively approve each payment. If the wallet has no balance, nothing happens. For cards, the system pulls money from the bank. Retries can happen automatically. Users can go negative or have grace periods. So, with mobile money, payment fails silently unless the user intervenes.)
+
+Auto-renewals may:
+-	Fail without clear feedback
+-	Incorrectly downgrade users  
+### c) Offline Downloads
+Problem:
+-	Offline access depends on an active subscription flag.
+-	Payment delays may incorrectly deactivate Premium.
+
+Risk:
+-	Users lose offline music while they actually paid.
+
+## 3. Why would this change be difficult to implement?
+This change is difficult because it involves technical, business, and regional challenges at the same time.
+### a) Asynchronous & Unreliable Payment Flow
+Card payment:
+>Pay → Success → Done
+
+Mobile Money payment:
+>Initiate → Wait → User approves → Telecom confirms → Webhook → Verify → Activate
+
+So:
+-	Confirmation may take seconds or minutes
+-	Sometimes confirmation never arrives
+
+The system must:
+-	Handle timeouts
+-	Retry safely
+-	Avoid double charging
+
+This increases complexity dramatically.  
+
+This breaks:
+-	Simple payment assumptions
+-	Existing subscription workflows
+### b) Fragmented Payment Ecosystem
+Uganda has:
+-	Multiple providers (MTN, Airtel, others)
+-	Different APIs, error codes, and behaviours
+
+Supporting all of them means:
+-	More integrations
+-	More testing
+-	More edge cases
+
+You’re not adding one payment method — you’re adding multiple mini-systems.
+### c) Reliability & Network Issues
+Common in Mobile Money:
+-	Delayed callbacks
+-	Duplicate confirmations
+-	Partial failures
+-	Timeouts
+
+Spotify-scale systems are built for high reliability, and Mobile Money introduces instability.
+
+Part D: Software Construction Challenges
+
+Maintaining a global platform like Spotify involves juggling millions of concurrent users, massive data pipelines, and a highly complex microservices architecture. Here are five significant engineering challenges involved in maintaining and improving the app:
+
+1. Scalability and Low-Latency Streaming
+With over 600 million users, Spotify must ensure that when a user hits "play," the music starts almost instantly, regardless of where they are in the world. This requires a massive, distributed Content Delivery Network (CDN) and sophisticated backend load balancing.
+
+The Challenge: Engineering teams must prevent "cascading failures" where one overloaded server causes a chain reaction that brings down the entire streaming service during high-traffic events, such as a major album release.
+
+2. Cross-Platform Consistency and Fragmentation
+Spotify exists on an enormous range of hardware: iPhones, Android devices, Windows/Mac desktops, smart TVs, gaming consoles, and even car dashboards.
+
+The Challenge: Each platform has different hardware capabilities, screen ratios, and OS constraints. Maintaining feature parity (ensuring a new feature like "Jam" works identically across all these devices) requires rigorous cross-platform testing and often necessitates building shared C++ libraries to reuse core logic across different operating systems.
+
+3. Personalization at Scale (Big Data)
+Spotify’s "Discover Weekly" and "Wrapped" features are powered by complex machine learning models that analyze billions of user interactions (likes, skips, shares).
+
+The Challenge: Processing petabytes of data to provide real-time recommendations without compromising app performance is difficult. Engineers must build robust data pipelines that can ingest user behavior data, process it through AI models, and push updates back to the user's interface without lag.
+
+4. Microservices and Decoupling
+Spotify famously uses a "Squads" and "Tribes" engineering model, where hundreds of small teams own specific features (e.g., the Search bar, the Payment gateway, or the Playlist UI).
+
+The Challenge: These features are often built as independent microservices. If these services are too "tightly coupled," a bug in the Search service might accidentally break the Home screen. Engineers must maintain strict "API contracts" to ensure that teams can update their specific features without crashing the rest of the application.
+
+5. Reliability Under Poor Network Conditions
+A significant portion of Spotify's user base listens while commuting, underground, or in areas with unstable 3G/4G connections.
+
+The Challenge: The app must be engineered for graceful degradation. This involves intelligent caching (pre-downloading the next song in the background) and adaptive bitrate streaming, which automatically lowers the audio quality to prevent buffering when the signal strength drops.
+
+Part E: Group Reflection 
+
+1) What surprised our group most about the complexity behind this app?
+We were surprised that Spotify isn’t “just playing music.” Behind one tap, it has to identify the user, check their subscription status, match the right audio file version, manage copyrights/region rules, pick a streaming quality based on network speed, and still keep the app smooth. Even features that look simple—like search, playlists, or “Liked Songs”—involve huge data handling, real-time syncing across devices, and recommendation systems that constantly learn from user behavior.
+
+2) Why is writing “working code” not enough for software systems at this scale?
+Because at Spotify’s scale, code must be maintainable, reliable, secure, and scalable over time. “Working code” might function today, but it can fail under heavy traffic, break on certain phones, drain battery, or become impossible to update safely. Spotify also needs strong testing, monitoring, and deployment practices so changes don’t crash millions of users at once. Plus, the system must handle messy real-world problems—slow internet, offline mode, different devices, payment issues, and continuous feature updates—without becoming unstable.
+
+3) What did we learn about teamwork from this exercise?
+We learned that teamwork is not optional in large software—it’s the only way it works. Different people naturally notice different things: one focuses on user experience, another on backend systems, another on risks and failures. To get a solid answer, we had to divide tasks, agree on assumptions, keep our explanations consistent, and combine everyone’s ideas into one clear document. We also realized that good collaboration means communicating early, keeping work organized in GitHub, and making sure everyone contributes meaningfully—not just one person doing everything.
 
