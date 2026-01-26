@@ -211,3 +211,9 @@ Because at Spotify’s scale, code must be maintainable, reliable, secure, and s
 3) What did we learn about teamwork from this exercise?
 We learned that teamwork is not optional in large software—it’s the only way it works. Different people naturally notice different things: one focuses on user experience, another on backend systems, another on risks and failures. To get a solid answer, we had to divide tasks, agree on assumptions, keep our explanations consistent, and combine everyone’s ideas into one clear document. We also realized that good collaboration means communicating early, keeping work organized in GitHub, and making sure everyone contributes meaningfully—not just one person doing everything.
 
+Contributions
+Part A-Kisuze
+Part B-Mutumba
+Part C-Ogwang
+Part D-Nziriga
+Part E-Katende
