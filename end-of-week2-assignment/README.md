@@ -41,11 +41,24 @@ Programming makes it run; software construction makes it survive real users, rea
 
 ---
 
-## Nziriga Isaac Nickson S23B23/046 – Contribution
+### Nziriga Isaac Nickson S23B23/046 – Contribution
+Part 4: How Code Reviews Improve Software Quality and Developer Skills*  
+Code reviews are a quality gate and a learning mechanism. They introduce a second set of eyes before code becomes part of the main system.
 
-(To be added)
+How code reviews improve software quality:
+- Catch logic errors early (before production)
+- Identify security issues (unsafe inputs, auth flaws)
+- Improve performance (inefficient loops/queries)
+- Enforce standards and consistency (readability matters at scale)
+- Reduce technical debt by challenging messy shortcuts
 
----
+How code reviews improve developer skills:
+- Developers get feedback on design and implementation choices
+- People learn patterns used across the team (shared mental model)
+- Junior developers improve faster by seeing real examples
+- Teams share knowledge—no single developer becomes a bottleneck
+
+In mature engineering teams, code reviews are one of the cheapest and most effective ways to improve reliability while building stronger engineers.
 
 ## Mutumba Benjamin S23B23/010 – Contribution
 
