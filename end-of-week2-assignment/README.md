@@ -41,7 +41,7 @@ Programming makes it run; software construction makes it survive real users, rea
 
 ---
 
-## Nziriga Isaac Nickson S23B23/046 – Contribution
+### Nziriga Isaac Nickson S23B23/046 – Contribution
 Part 4: How Code Reviews Improve Software Quality and Developer Skills*  
 Code reviews are a quality gate and a learning mechanism. They introduce a second set of eyes before code becomes part of the main system.
 
