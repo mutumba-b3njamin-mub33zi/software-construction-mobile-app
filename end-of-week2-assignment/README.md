@@ -11,7 +11,7 @@ Tasks:
 5. Reflect briefly on how Al can help in understanding code without replacing learning.
 
 
-### Gareth Neville Kisuze – Contribution
+### Gareth Neville Kisuze S23B23/029 – Contribution
 Part 1: Programming vs Software Construction (Real-World Perspective)*  
 Programming focuses on writing code that performs specific tasks—implementing algorithms, processing inputs, and producing outputs. It’s mainly concerned with making individual components work correctly.
 
@@ -29,25 +29,25 @@ In production software, the same login feature becomes software construction wor
 
 Programming makes it run; software construction makes it survive real users, real risks, and constant change.
 
-## Derrick Katende – Contribution
+## Derrick Katende S23B23/024 – Contribution
 
 [Paste your markdown answers here]
 
 ---
 
-## Andrew Ogwang – Contribution
+## Andrew Ogwang S23B23/050 – Contribution
 
 (To be added)
 
 ---
 
-## Nziriga Isaac Nickson – Contribution
+## Nziriga Isaac Nickson S23B23/046 – Contribution
 
 (To be added)
 
 ---
 
-## Mutumba Benjamin – Contribution
+## Mutumba Benjamin S23B23/010 – Contribution
 
 (To be added)
 
