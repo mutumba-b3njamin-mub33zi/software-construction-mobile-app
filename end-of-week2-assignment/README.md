@@ -71,7 +71,7 @@ In mature engineering teams, code reviews are one of the cheapest and most effec
 
 ## Mutumba Benjamin S23B23/010 – Contribution
 
-Part 5: How AI Can Help Understand Code Without Replacing Learning 
+Part 5: How AI Can Help Understand Code Without Replacing Learning*
 AI can support learning best when it acts like a tutor—not a replacement for thinking. It’s useful for understanding unfamiliar code, but it becomes harmful when it replaces the student’s reasoning.
 
 Good use of AI in code learning includes:
