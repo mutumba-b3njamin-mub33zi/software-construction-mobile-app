@@ -36,8 +36,15 @@ Programming makes it run; software construction makes it survive real users, rea
 ---
 
 ## Andrew Ogwang S23B23/050 – Contribution
-
-(To be added)
+### Part 3: Why Version Control Is Critical in Team-Based Development
+Version control systems (such as Git and GitHub) help teams manage changes in software projects.  
+In team development, many people work on the same codebase. Version control:
+- Tracks every change made to the project
+- Prevents team members from overwriting each other’s work
+- Allows multiple features to be developed at the same time using branches
+- Makes it possible to restore older versions if something breaks  
+Without version control, collaboration becomes difficult. Files may be lost, changes may conflict, and the team can't properly build software together.  
+Version control creates structure, accountability, and safety in teamwork.
 
 ---
 
