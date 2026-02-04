@@ -31,9 +31,21 @@ Programming makes it run; software construction makes it survive real users, rea
 
 ## Derrick Katende S23B23/024 – Contribution
 
-[Paste your markdown answers here]
+Maintainability is how easily software can be understood, fixed, improved, or extended over time. Poor maintainability often comes from unclear structure, duplicated logic, weak naming, tightly coupled modules, hard-coded values, and missing documentation/tests.
 
----
+A realistic high-impact scenario is a legacy system (banking, hospital, telecom billing) that has grown for years without clean structure. Over time:
+- Original developers leave and knowledge disappears
+- Simple changes require touching many unrelated files
+- “Quick fixes” accumulate into technical debt
+- Teams become afraid to refactor because they might break production
+
+This is how poor maintainability turns into serious problems:
+- A minor pricing/tax rule update introduces incorrect billing
+- A rushed patch breaks reporting or transaction workflows
+- A small UI change triggers unexpected failures due to hidden dependencies
+- Security vulnerabilities remain because fixes are risky to deploy
+
+Eventually, the organization either suffers repeated downtime and expensive bug-fixing cycles—or is forced into a full rewrite, which is even more costly.
 
 ## Andrew Ogwang S23B23/050 – Contribution
 ### Part 3: Why Version Control Is Critical in Team-Based Development
